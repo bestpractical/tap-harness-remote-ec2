@@ -47,7 +47,8 @@ sub load_remote_config {
     $self->SUPER::load_remote_config;
     warn
         "Useless 'host' configuration parameter set for TAP::Harness::Remote::EC2\n"
-        if delete $self->remote_config("host");
+        if grep {defined} @{$self->remote_config("host")};
+    delete $self->{remote_config}{host};
 
     die "Configuration failed to include required 'access_key' parameter\n"
         unless $self->remote_config("access_key");
