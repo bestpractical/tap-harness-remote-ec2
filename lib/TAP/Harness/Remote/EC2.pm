@@ -91,9 +91,14 @@ sub load_remote_config {
     return $self;
 }
 
-=head2 hosts EC2, TYPE
+=head2 hosts EC2 [, STATUS]
 
-Limi
+Returns an array of L<Net::Amazon::EC2::RunningInstances> objects
+which match the C<ami> type specified in the config file, and whose
+status matches the given C<STATUS>.  C<STATUS> may be either a string,
+or a regex; it defaults to "running".
+
+C<EC2> should be a valid L<Net::Amazon::EC2> object.
 
 =cut
 
@@ -109,6 +114,13 @@ sub hosts {
         grep { $_->instance_state->name =~ $test }
         map { @{ $_->instances_set } } @{$running_instances};
 }
+
+=head2 wait_pending EC2.
+
+Waits until all hosts in the "pending" state have started.  C<EC2>
+should be a valid L<Net::Amazon::EC2> object.
+
+=cut
 
 sub wait_pending {
     my $self = shift;
