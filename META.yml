@@ -18,4 +18,4 @@ requires:
   TAP::Harness: 3.04
   TAP::Harness::Remote: 0
   Test::More: 0
-version: 0.01
+version: 1.00

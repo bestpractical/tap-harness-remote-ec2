@@ -1,6 +1,6 @@
 package TAP::Harness::Remote::EC2;
 
-our $VERSION = '0.02';
+our $VERSION = '1.00';
 
 use warnings;
 use strict;
